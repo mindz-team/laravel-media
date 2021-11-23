@@ -1,0 +1,27 @@
+{
+    "name": "mindz-team/laravel-media",
+    "description": "Package utilizes `spatie/laravel-medialibrary` package and allows to use media as properties and painlessly use them.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "roman.szymanski",
+            "email": "r.szymanski@mindz.pl"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-medialibrary": "^9.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mindz\\LaravelMedia\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mindz\\LaravelMedia\\LaravelMediaServiceProvider"
+            ]
+        }
+    }
+}
