@@ -27,7 +27,7 @@ class MediaActions
 
     public function upload($file)
     {
-        $mediaLibraryClass = config(config('media-library.temporary_upload_model'), MediaLibrary::class);
+        $mediaLibraryClass = config('media-library.temporary_upload_model', MediaLibrary::class);
         $mediaLibrary = new $mediaLibraryClass();
 
         $media = $mediaLibrary->addMedia($file)->toMediaCollection();
