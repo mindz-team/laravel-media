@@ -73,7 +73,7 @@ class MediaController extends CrudableController
 To use default package resource `Mindz\LaravelMedia\Resources\UploadResource` use `usingResource` method
 
 ```
-return Media::usingResource()->upload($request->file('example'));
+return Media::upload($request->file('example'));
 ```
 
 To use resource of your preference use `usingResource` method with your resource class as parameter
@@ -81,6 +81,13 @@ To use resource of your preference use `usingResource` method with your resource
 ```
 return Media::usingResource(\App\Resources\MyResource::class)->upload($request->file('example'));
 ```
+
+By default dummy model of MediaLibrary `Mindz\LaravelMedia\Models\MediaLibrary` is used when uploaded. To assign media to another dummy model use `usingModel` method:
+
+```
+return Media::usingMedia(\Mindz\LaravelMedia\Models\MediaLibrary)->upload($request->file('example'));
+```
+
 
 ## Models unassigned to any model
 
