@@ -96,7 +96,7 @@ assignment can be treated as package library of medias.
 Default model should be set in `config.media-library.php` file
 
 ```
-    'temporary_upload_model' => \Mindz\LaravelMedia\Models\MediaLibrary::class
+'temporary_upload_model' => \Mindz\LaravelMedia\Models\MediaLibrary::class
 ```
 
 
