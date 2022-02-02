@@ -8,7 +8,6 @@ use Mindz\LaravelMedia\Resources\UploadResource;
 class MediaActions
 {
     private $resource;
-    private $mediaLibrary;
 
     public function usingResource($resourceClass = null)
     {
@@ -21,30 +20,14 @@ class MediaActions
         return $this;
     }
 
-    public function usingMedia($mediaLibraryClass = null)
-    {
-        if (!$mediaLibraryClass) {
-            $mediaLibraryClass = MediaLibrary::class;
-        }
-
-        $this->setMediaLibrary($mediaLibraryClass);
-
-        return $this;
-    }
-
     private function setResource($resourceClass)
     {
         $this->resource = $resourceClass;
     }
 
-    private function setMediaLibrary($mediaLibraryClass)
-    {
-        $this->mediaLibrary = $mediaLibraryClass;
-    }
-
     public function upload($file)
     {
-        $mediaLibraryClass = $this->getMediaClass();
+        $mediaLibraryClass = config(config('media-library.temporary_upload_model'), MediaLibrary::class);
         $mediaLibrary = new $mediaLibraryClass();
 
         $media = $mediaLibrary->addMedia($file)->toMediaCollection();
@@ -59,10 +42,5 @@ class MediaActions
     private function getResource()
     {
         return $this->resource;
-    }
-
-    private function getMediaClass()
-    {
-        return $this->mediaLibrary ?? MediaLibrary::class;
     }
 }

@@ -35,7 +35,8 @@ trait HandleMediables
             ->where('id', $id)
             ->delete();
 
-        $media = Media::where('model_type', MediaLibrary::class)->where('id', $id)->first();
+        $mediaLibraryClass = config(config('media-library.temporary_upload_model'), MediaLibrary::class);
+        $media = Media::where('model_type', $mediaLibraryClass)->where('id', $id)->first();
 
         if ($media) {
             $media->move($model, $collection);
@@ -64,7 +65,8 @@ trait HandleMediables
             ->whereNotIn('id', $ids)
             ->delete();
 
-        $media = Media::where('model_type', MediaLibrary::class)->whereIn('id', $ids);
+        $mediaLibraryClass = config(config('media-library.temporary_upload_model'), MediaLibrary::class);
+        $media = Media::where('model_type', $mediaLibraryClass)->whereIn('id', $ids);
 
         foreach ($media->get() as $item) {
             $newMedia = $item->move($model, $collection);

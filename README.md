@@ -26,6 +26,12 @@ Publishing the config file is optional:
 
     php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
 
+Set default temporary upload model
+
+```
+    'temporary_upload_model' => \Mindz\LaravelMedia\Models\MediaLibrary::class
+```
+
 # Usage
 
 Model must use trait `Shortcodes/Media/Mediable` and implement HasMedia interface
@@ -73,7 +79,7 @@ class MediaController extends CrudableController
 To use default package resource `Mindz\LaravelMedia\Resources\UploadResource` use `usingResource` method
 
 ```
-return Media::upload($request->file('example'));
+return Media::usingResource()->upload($request->file('example'));
 ```
 
 To use resource of your preference use `usingResource` method with your resource class as parameter
@@ -82,17 +88,18 @@ To use resource of your preference use `usingResource` method with your resource
 return Media::usingResource(\App\Resources\MyResource::class)->upload($request->file('example'));
 ```
 
-By default dummy model of MediaLibrary `Mindz\LaravelMedia\Models\MediaLibrary` is used when uploaded. To assign media to another dummy model use `usingModel` method:
-
-```
-return Media::usingMedia(\Mindz\LaravelMedia\Models\MediaLibrary)->upload($request->file('example'));
-```
-
-
 ## Models unassigned to any model
 
 Free spatie library does not allows to upload media without any model. Therefore assets are binded to dummy model. This
-assignment can be treated as package library of medias.
+assignment can be treated as package library of medias. 
+
+Default model should be set in `config.media-library.php` file
+
+```
+    'temporary_upload_model' => \Mindz\LaravelMedia\Models\MediaLibrary::class
+```
+
+
 
 ## Assigning assets to models
 

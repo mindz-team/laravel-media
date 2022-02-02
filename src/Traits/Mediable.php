@@ -27,6 +27,5 @@ trait Mediable
         }, $this->mediaCollections);
 
         $this->fillable(array_merge($this->fillable, $collectionsName));
-
     }
 }
