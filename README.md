@@ -88,6 +88,22 @@ To use resource of your preference use `usingResource` method with your resource
 return Media::usingResource(\App\Resources\MyResource::class)->upload($request->file('example'));
 ```
 
+## Direct assignment
+
+To assign uploaded file to custom object directly use `usingObject`
+
+```
+$object = User::factory()->create;
+return Media::usingObject($object)->upload($request->file('example'));
+```
+
+In addition, you can choose collection to which item should be assigned. You can do it with method `assCollection`
+
+```
+$object = User::factory()->create;
+return Media::usingObject($object)->asCollection('avatar)->upload($request->file('example'));
+```
+
 ## Models unassigned to any model
 
 Free spatie library does not allows to upload media without any model. Therefore assets are binded to dummy model. This
