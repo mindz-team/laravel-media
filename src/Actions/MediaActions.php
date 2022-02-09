@@ -2,6 +2,7 @@
 
 namespace Mindz\LaravelMedia\Actions;
 
+use Illuminate\Database\Eloquent\Model;
 use Mindz\LaravelMedia\Models\MediaLibrary;
 use Mindz\LaravelMedia\Resources\UploadResource;
 
