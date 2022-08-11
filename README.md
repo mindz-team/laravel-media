@@ -61,10 +61,9 @@ class link in example below.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mindz\LaravelCrudable\Http\Controllers\CrudableController;
 use Mindz\LaravelMedia\Facades\MediaFacade as Media;
 
-class MediaController extends CrudableController
+class MediaController
 {
     public function upload(Request $request)
     {
