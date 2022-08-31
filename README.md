@@ -75,6 +75,26 @@ class MediaController
 
 > By default response is `$media->toArray()` object.
 
+There is an option to uploade file using `uploadContent` method which allows to use file in string representation
+
+```
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Mindz\LaravelMedia\Facades\MediaFacade as Media;
+
+class MediaController
+{
+    public function upload(Request $request)
+    {
+        return Media::uploadContent($request->file('example')->getContent(), $request->file('example')->getClientOriginalName());
+    }
+}
+
+```
+
 To use default package resource `Mindz\LaravelMedia\Resources\UploadResource` use `usingResource` method
 
 ```
