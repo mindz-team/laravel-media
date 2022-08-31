@@ -57,6 +57,24 @@ class MediaActions
 
         return $media->toArray();
     }
+    
+    public function uploadContent($file, $fileName)
+    {
+        $mediaLibraryClass = config('media-library.temporary_upload_model', MediaLibrary::class);
+        $mediaLibrary = new $mediaLibraryClass();
+
+        if ($this->model && $this->collectionName) {
+            $mediaLibrary = $this->model;
+        }
+
+        $media = $mediaLibrary->addMediaFromString($file)->usingName($fileName)->usingFileName($fileName)->toMediaCollection($this->collectionName ?? 'default');
+
+        if ($resource = $this->getResource()) {
+            return new $resource($media);
+        }
+
+        return $media->toArray();
+    }
 
     private function getResource()
     {
