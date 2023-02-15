@@ -25,6 +25,10 @@ trait HandleMediables
 
     private function handleSingleMedia(Model $model, $id, $collection)
     {
+        if ($model->getFirstMedia($collection)?->id === $id) {
+            return;
+        }
+        
         if (!$id) {
             optional($model->getFirstMedia($collection))->delete();
             return;
