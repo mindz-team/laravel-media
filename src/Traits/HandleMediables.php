@@ -50,7 +50,7 @@ trait HandleMediables
     private function handleMultipleMedia(Model $model, $ids, $collection)
     {
         if (!is_array($ids)) {
-            abort(404);
+           return;
         }
 
         if (isset($ids['delete'])) {
